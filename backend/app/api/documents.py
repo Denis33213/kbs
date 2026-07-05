@@ -13,7 +13,7 @@ from app.api.schemas import DocumentUploadResponse, DocumentInfo
 from app.core.config import settings
 from app.models.user import User
 from app.services.chunker import split_text_into_chunks
-from app.services.elasticsearch_service import get_unique_documents, index_document_chunk
+from app.services.elasticsearch_service import document_exists, get_unique_documents, index_document_chunk
 from app.services.parser import extract_text_from_docx, extract_text_from_pdf
 
 logger = logging.getLogger(__name__)
@@ -99,3 +99,18 @@ async def upload_document(file: UploadFile = File(...), current_user: User = Dep
 def list_documents(current_user: User = Depends(get_current_user)):
     """Возвращает список уникальных документов, уже загруженных и проиндексированных в системе."""
     return get_unique_documents()
+
+
+@router.get(
+    "/{document_id}",
+    summary="Проверка существования документа по ID",
+)
+def get_document(document_id: str, current_user: User = Depends(get_current_user)):
+    """
+    Проверяет, существует ли документ с указанным ID в системе.
+
+    :raises HTTPException 404: Если документ с таким document_id не найден.
+    """
+    if not document_exists(document_id):
+        raise HTTPException(status.HTTP_404_NOT_FOUND, "Документ с таким ID не найден")
+    return {"document_id": document_id, "exists": True}

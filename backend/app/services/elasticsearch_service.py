@@ -156,6 +156,24 @@ def get_unique_documents() -> List[Dict]:
     return result
 
 
+def document_exists(document_id: str) -> bool:
+    """
+    Проверяет, существует ли документ с данным document_id в индексе.
+
+    Используется эндпоинтом GET /api/v1/documents/{document_id} для
+    возврата корректного HTTP 404, если документ не найден.
+
+    :param document_id: UUID документа.
+    :return: True, если найден хотя бы один чанк с таким document_id, иначе False.
+    """
+    query = {"query": {"term": {"document_id": document_id}}, "size": 0}
+    try:
+        response = es_client.search(index=INDEX_NAME, body=query)
+    except NotFoundError:
+        return False
+    return response["hits"]["total"]["value"] > 0
+
+
 # ===================== Поиск =====================
 
 def search_chunks(query: str, page: int = 1, page_size: int = DEFAULT_PAGE_SIZE) -> Dict:
