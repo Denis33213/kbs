@@ -2,7 +2,6 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
-# Системные зависимости для psycopg2 и сборки некоторых пакетов
 RUN apt-get update && apt-get install -y --no-install-recommends \
     gcc \
     libpq-dev \

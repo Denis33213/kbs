@@ -3,7 +3,6 @@ import { createContext, useCallback, useContext, useEffect, useState } from "rea
 const AuthContext = createContext(null);
 const STORAGE_KEY = "kb_auth";
 
-/** Читает сохранённые данные авторизации из localStorage. */
 function readStoredAuth() {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
@@ -13,14 +12,6 @@ function readStoredAuth() {
   }
 }
 
-/**
- * Провайдер авторизации: хранит JWT-токен и логин пользователя,
- * сохраняет их в localStorage между перезагрузками страницы.
- *
- * Также слушает глобальное событие "auth:logout" — его генерирует
- * apiClient при получении 401 от сервера (например, если токен истёк),
- * чтобы принудительно разлогинить пользователя.
- */
 export function AuthProvider({ children }) {
   const [auth, setAuth] = useState(readStoredAuth);
 
@@ -54,8 +45,7 @@ export function AuthProvider({ children }) {
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 
-/** Хук доступа к контексту авторизации. Должен использоваться внутри AuthProvider. */
-// eslint-disable-next-line react-refresh/only-export-components
+
 export function useAuth() {
   const ctx = useContext(AuthContext);
   if (!ctx) {

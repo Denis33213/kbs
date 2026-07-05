@@ -51,7 +51,7 @@ export default function RegisterPage() {
     <div className="auth-screen">
       <div className="auth-card">
         <div className="auth-brand">
-          <span className="auth-brand__mark">Alma</span>
+          <span className="auth-brand__mark">KBS</span>
           <span className="auth-brand__tag">база знаний университета</span>
         </div>
         <h1>Создать аккаунт</h1>
@@ -66,7 +66,7 @@ export default function RegisterPage() {
               maxLength={50}
               required
               autoFocus
-              placeholder="ivanov_ivan"
+              placeholder=""
             />
           </label>
           <label className="field">

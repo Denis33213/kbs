@@ -37,7 +37,7 @@ export default function HomePage() {
         }))
       );
     } catch {
-      // Не удалось обновить список — оставляем прежнее состояние, это не критично для остального интерфейса
+      // Не удалось обновить список
     } finally {
       setIsLoadingDocuments(false);
     }
