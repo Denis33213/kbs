@@ -1,9 +1,15 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { registerUser, loginUser } from "../services/authService.js";
-import { useAuth } from "../context/AuthContext.jsx.jsx";
+import { registerUser, loginUser } from "../services/authService";
+import { useAuth } from "../context/AuthContext.jsx";
 import "./RegisterPage.css";
 
+/**
+ * Страница регистрации. После успешной регистрации автоматически
+ * выполняет вход (backend не возвращает токен при регистрации,
+ * поэтому логин выполняется отдельным запросом с теми же данными)
+ * и перенаправляет на главную страницу.
+ */
 export default function RegisterPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -60,7 +66,7 @@ export default function RegisterPage() {
               maxLength={50}
               required
               autoFocus
-              placeholder="ваш логин"
+              placeholder="ivanov_ivan"
             />
           </label>
           <label className="field">
@@ -90,7 +96,7 @@ export default function RegisterPage() {
             </p>
           )}
           <button type="submit" className="btn btn-primary" disabled={isSubmitting}>
-            {isSubmitting ? "Создание аккаунта…" : "Зарегистрироваться"}
+            {isSubmitting ? "Создаём аккаунт…" : "Зарегистрироваться"}
           </button>
         </form>
         <p className="auth-switch">
