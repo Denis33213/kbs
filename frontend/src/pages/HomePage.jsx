@@ -15,11 +15,6 @@ const MAX_SIZE_BYTES = 20 * 1024 * 1024;
 
 let uploadIdCounter = 0;
 
-/**
- * Главная страница приложения: зона загрузки документов (FE-01–FE-03)
- * слева и поиск по ним (FE-04–FE-08) справа. На узких экранах панели
- * складываются в одну колонку (FE-09).
- */
 export default function HomePage() {
   const [documents, setDocuments] = useState([]);
   const [uploads, setUploads] = useState([]);
@@ -42,6 +37,7 @@ export default function HomePage() {
         }))
       );
     } catch {
+      // Не удалось обновить список — оставляем прежнее состояние, это не критично для остального интерфейса
     } finally {
       setIsLoadingDocuments(false);
     }
