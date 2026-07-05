@@ -1,0 +1,30 @@
+﻿# Секреты
+.env
+!.env.example
+
+# Python (backend)
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.coverage
+htmlcov/
+venv/
+.venv/
+test.db
+test_ci.db
+
+# Node / Vite (frontend)
+node_modules/
+dist/
+*.local
+npm-debug.log*
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Docker
+*.log

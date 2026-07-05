@@ -1,0 +1,52 @@
+.result-card {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  animation: result-card-fade-in 200ms ease;
+}
+
+@keyframes result-card-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.result-card__header {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 13px;
+  margin-bottom: 8px;
+  color: var(--color-muted);
+}
+
+.result-card__file {
+  font-weight: 600;
+  color: var(--color-ink);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.result-card__page {
+  flex-shrink: 0;
+}
+
+.result-card__text {
+  margin: 0 0 10px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* Подсветка совпадений (FE-06): backend оборачивает совпавшие слова в <mark> */
+.result-card__text mark {
+  background: var(--color-highlight);
+  color: var(--color-ink);
+  border-radius: 3px;
+  padding: 0 2px;
+}

@@ -1,0 +1,29 @@
+.relevance {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.relevance__bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 26px;
+}
+
+.relevance__bar {
+  width: 4px;
+  border-radius: 2px;
+  background: var(--color-border);
+  align-self: flex-end;
+}
+
+.relevance__bar--filled {
+  background: var(--color-accent);
+}
+
+.relevance__value {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--color-muted);
+}
